@@ -1,0 +1,67 @@
+main {
+  width: 100%;
+}
+
+.project-view {
+  display: flex;
+  gap: 1em;
+  width: 100%;
+  min-height: 100vh;
+  padding: 1em;
+}
+.project-view .conversation,
+.project-view .code,
+.project-view .review {
+  border-radius: 0.7em;
+  flex-basis: 33%;
+}
+.project-view .conversation {
+  flex-basis: 25%;
+  background-color: #ececec;
+  position: relative;
+  padding: 0.4em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+.project-view .conversation .message {
+  padding: 0.5em;
+  border-radius: 0.3em;
+  background-color: #dedede;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 90%;
+}
+.project-view .conversation .input-group {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  gap: 0.5em;
+  background-color: #d9d9d9;
+  padding: 0.3em;
+  border-radius: 0.5em;
+  justify-content: space-between;
+}
+.project-view .conversation .input-group input {
+  flex-basis: 80%;
+  max-width: 75%;
+  padding: 0.3em 1em;
+  outline: none;
+  border: 1px solid black;
+  border-radius: 0.3em;
+}
+.project-view .conversation .input-group button {
+  flex-basis: 17%;
+  padding: 0.3em 0.7em;
+  cursor: pointer;
+}
+.project-view .code {
+  flex-basis: 43%;
+  background-color: #101010;
+}
+.project-view .review {
+  flex-basis: 32%;
+  background-color: #000000;
+}
