@@ -17,9 +17,7 @@ const Project = () => {
     const [ messages, setMessages ] = useState([])
     const [ currentMessage, setCurrentMessage ] = useState("")
 
-    const [ code, setCode ] = useState(`const greet = () => {
-        console.log("Hello, World!");
-      };`)
+    const [ code, setCode ] = useState(`const greet = () => {console.log("Hello, World!");};`)
 
 
     const appendMessage = (msg) => {
