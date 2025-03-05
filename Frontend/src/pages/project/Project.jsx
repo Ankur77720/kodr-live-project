@@ -3,47 +3,62 @@ import { useLocation } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { io } from "socket.io-client"
 import './Project.css'
+import CodeEditor from '../../components/CodeEditor'
 
 
 const Project = () => {
 
     const params = useParams()
-    const [ projectId, setProjectId ] = useState(params.projectId)
+
+    console.log(params)
 
     const [ socket, setSocket ] = useState(null)
 
     const [ messages, setMessages ] = useState([])
     const [ currentMessage, setCurrentMessage ] = useState("")
 
+    const jsCode = `const greet = () => {
+        console.log("Hello, World!");
+      };`;
+
     const appendMessage = (msg) => {
-        setMessages([ ...messages, msg ])
+        const temp = messages
+        temp.push(msg)
+        setMessages([ ...temp ])
     }
 
     useEffect(() => {
-        const tempSocket = io("https://4bmp65kq-3000.inc1.devtunnels.ms", {
+        const tempSocket = io('https://4bmp65kq-3000.inc1.devtunnels.ms', {
             query: {
-                projectId
+                projectId: params.projectId
             }
         })
 
-        tempSocket.on('message', msg => {
+        tempSocket.on('chacha', msg => {
+            console.log(msg)
             appendMessage(msg)
         })
 
         setSocket(tempSocket)
     }, [])
 
+
+
+
     return (
         <main>
             <section className="project-view">
                 <div className="conversation">
-                    {messages.map((message, index) => {
-                        return (
-                            <div className="message">
-                                <p>{message}</p>
-                            </div>
-                        )
-                    })}
+                    <div className="messages">
+
+                        {messages.map((message, index) => {
+                            return (
+                                <div className="message">
+                                    <p>{message}</p>
+                                </div>
+                            )
+                        })}
+                    </div>
                     <div className="input-group">
                         <input
                             value={currentMessage}
@@ -51,14 +66,16 @@ const Project = () => {
                             type="text" placeholder='Enter message' />
                         <button
                             onClick={() => {
-                                socket.emit('message', currentMessage)
+                                socket.emit('chacha', currentMessage)
                                 appendMessage(currentMessage)
                                 setCurrentMessage("")
                             }}
                         ><i className="ri-send-plane-fill"></i></button>
                     </div>
                 </div>
-                <div className="code"></div>
+                <div className="code" style={{ color: "white" }}>
+                    <CodeEditor initialCode={jsCode} language="javascript" />
+                </div>
                 <div className="review"></div>
 
             </section>

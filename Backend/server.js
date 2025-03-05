@@ -3,10 +3,11 @@ const connect = require('./src/db/db');
 
 connect();
 
+
 const server = require('http').createServer(app);
 const io = require('socket.io')(server, {
     cors: {
-        origin: "*",
+        origin: '*',
     }
 });
 io.on('connection', socket => {
@@ -15,13 +16,14 @@ io.on('connection', socket => {
 
     socket.join(projectId)
 
-    socket.on('message', msg => {
-        socket.broadcast.to(projectId).emit('message', msg)
+    console.log('New client connected');
+
+    socket.on("chacha", msg => {
+        console.log(msg)
+        socket.to(projectId).emit('chacha', msg)
     })
 
-    console.log('User connected');
 });
-
 
 server.listen(3000, () => {
     console.log('Server is running on port 3000');
