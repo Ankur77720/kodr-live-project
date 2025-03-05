@@ -4,8 +4,7 @@ import Prism from 'prismjs';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism-dark.css';
 
-const CodeEditor = ({ initialCode }) => {
-    const [ code, setCode ] = useState(initialCode);
+const CodeEditor = ({ code ,setCode }) => {
 
     const highlightCode = (code) => Prism.highlight(code, Prism.languages.javascript, 'javascript');
 

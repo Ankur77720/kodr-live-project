@@ -17,9 +17,10 @@ const Project = () => {
     const [ messages, setMessages ] = useState([])
     const [ currentMessage, setCurrentMessage ] = useState("")
 
-    const jsCode = `const greet = () => {
+    const [ code, setCode ] = useState(`const greet = () => {
         console.log("Hello, World!");
-      };`;
+      };`)
+
 
     const appendMessage = (msg) => {
         const temp = messages
@@ -70,11 +71,11 @@ const Project = () => {
                                 appendMessage(currentMessage)
                                 setCurrentMessage("")
                             }}
-                        ><i className="ri-send-plane-fill"></i></button>
+                        ><i className="ri-end-plane-fill"></i></button>
                     </div>
                 </div>
                 <div className="code" style={{ color: "white" }}>
-                    <CodeEditor initialCode={jsCode} language="javascript" />
+                    <CodeEditor setCode={setCode} code={code} language="javascript" />
                 </div>
                 <div className="review"></div>
 
